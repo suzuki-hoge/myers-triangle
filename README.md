@@ -43,4 +43,5 @@ function check(String s) => String {
 次の言語はサンプルプロジェクトを同梱しているので、必要に応じて利用して良い
 
 + [PHP](./php)
++ [Java](./java)
 
