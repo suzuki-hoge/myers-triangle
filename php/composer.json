@@ -1,0 +1,14 @@
+{
+  "name": "suzuki-hoge/myers-triangle",
+  "description": "sample php project for myers triangle.",
+  "require": {
+    "psy/psysh": "*",
+    "phpunit/phpunit": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Myers\\": "src/"
+    }
+  }
+}
+
