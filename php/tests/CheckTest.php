@@ -16,7 +16,7 @@ class CheckTest extends TestCase
     {
         // 必要だと考えたテストを実装する
         // テストメソッドを分けたりしても良い
-        $this->assertSame(Checker::apply($v), $exp);
+        $this->assertSame($exp, Checker::apply($v));
     }
 
     function apply_dp(): array
