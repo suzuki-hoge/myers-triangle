@@ -8,30 +8,34 @@ class Checker
 {
     public static function apply(string $v): string
     {
-        $array =  array_map('intval', explode(' ', $v));
+        $lines = self::convertToLines($v);
 
-        $max = 0;
-        $sum = 0;
-        foreach ($array as $value) {
-            if ($max < $value) {
-                $sum += $max;
-                $max = $value;
-            } else {
-                $sum += $value;
-            }
-        }
+        $maxLength = max($lines);
 
-        if ($max >= $sum) {
+        if ($maxLength >= array_sum($lines) - $maxLength) {
             return '不成立';
         }
 
-        if (count(array_unique($array)) === 1) {
+        $numberOfSameLength = count(array_unique($lines));
+
+        if ($numberOfSameLength === 1) {
             return '正三角形';
         }
 
-        if (count(array_unique($array)) === 2) {
+        if ($numberOfSameLength === 2) {
             return '二等辺三角形';
         }
         return '不等辺三角形';
+    }
+
+    private static function convertToLines(string $v): array
+    {
+        $array = explode(' ', $v);
+
+        if(count($array) !== 3 || in_array(false, array_map('is_numeric', $array))) {
+            throw new \RuntimeException('渡された値が不正です。');
+        }
+
+        return array_map('intval', explode(' ', $v));
     }
 }
