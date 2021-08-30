@@ -55,7 +55,7 @@ class CheckTest extends TestCase
         yield '中>大>小' => ['4 5 3'];
         yield '中>小>大' => ['7 5 10'];
         yield '小>大>中' => ['2 4 3'];
-        yield '小>中>大' => ['3 4 5'];
+        yield '小>中>大' => [implode(' ', [2, PHP_INT_MAX - 1, PHP_INT_MAX])];
     }
 
     /**

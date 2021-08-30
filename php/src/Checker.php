@@ -56,7 +56,7 @@ class Checker
     private static function canCreateTriangle(array $params): bool
     {
         // 最長辺 < 他２辺の合計 なら三角形を作れる
-        return $params[0] < ($params[1] + $params[2]);
+        return ($params[0] - $params[1]) < $params[2];
     }
 
     private static function canCreateEquilateralTriangle(array $params): bool
