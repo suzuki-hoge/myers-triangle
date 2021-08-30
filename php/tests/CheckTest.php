@@ -4,26 +4,69 @@ declare(strict_types=1);
 
 namespace Myers;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class CheckTest extends TestCase
 {
     /**
      * @test
-     * @dataProvider apply_dp
+     * @dataProvider 例外が発生するDataProvider
      */
-    public function apply(string $v, string $exp)
+    public function 例外が発生する(string $value, string $expectException, string $expectExceptionMessage)
     {
-        // 必要だと考えたテストを実装する
-        // テストメソッドを分けたりしても良い
-        $this->assertSame($exp, Checker::apply($v));
+        $this->expectException($expectException);
+        $this->expectExceptionMessage($expectExceptionMessage);
+        $checker = new Checker();
+        $checker->apply($value);
     }
 
-    function apply_dp(): array
+    public function 例外が発生するDataProvider(): array
     {
         return [
-            '正三角形のパターン 1' => ['3 3 3', '正三角形'],
-            '正三角形のパターン 2' => ['5 5 5', '正三角形'],
+            '引数が足りていない' => [
+                'value' => '3 3 ',
+                'expectException' => InvalidArgumentException::class,
+                'expectExceptionMessage' => '引数が足りません',
+            ],
+
+            '引数に数値以外が入っている' => [
+                'value' => '3 3 あ',
+                'expectException' => InvalidArgumentException::class,
+                'expectExceptionMessage' => '引数は数値で指定してください',
+            ],
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider apply_dp
+     */
+    public function apply(string $v, string $exp): void
+    {
+        $checker = new Checker();
+
+        $actual = $checker->apply($v);
+
+        $this->assertSame($exp, $actual);
+    }
+
+    public function apply_dp(): array
+    {
+        return [
+            //正三角形
+            '正三角形' => ['3 3 3', Triangle::EQUILATERAL_TRIANGLE],
+            '小数点を含んだ正三角形' => ['2.1 2.1 2.1', Triangle::EQUILATERAL_TRIANGLE],
+
+            //二等辺三角形
+            '二等辺三角形' => ['5 2 5', Triangle::ISOSCELES_TRIANGLE],
+            '小数点を含んだ二等辺三角形' => ['5.5 2 5.5', Triangle::ISOSCELES_TRIANGLE],
+
+            //不等辺三角形
+            '不等辺三角形' => ['3 1 5', Triangle::SCALENE_TRIANGLE],
+            '小数点を含んだ不等辺三角形' => ['3 1 5.8', Triangle::SCALENE_TRIANGLE],
+
+            //不成立は実装できなかった
         ];
     }
 }
