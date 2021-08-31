@@ -30,6 +30,14 @@ class TriangleTest extends TestCase
                 'expectException' => InvalidArgumentException::class,
                 'expectExceptionMessage' => '1以上の値を指定してください',
             ],
+
+            'phpのMAX_INTを超えている' => [
+                'hen1' => PHP_INT_MAX + 1,
+                'hen2' => 3,
+                'hen3' => 3,
+                'expectException' => InvalidArgumentException::class,
+                'expectExceptionMessage' => '値が大きすぎます',
+            ],
         ];
     }
 

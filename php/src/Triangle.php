@@ -23,8 +23,12 @@ final class Triangle
 
     private function validate(int $value): void
     {
-        if ($value < 1 || $value > PHP_INT_MAX) {
+        if ($value < 1) {
             throw new InvalidArgumentException('1以上の値を指定してください');
+        }
+
+        if ($value > PHP_INT_MAX) {
+            throw new InvalidArgumentException('値が大きすぎます');
         }
     }
 

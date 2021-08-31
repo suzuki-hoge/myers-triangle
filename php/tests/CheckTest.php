@@ -56,17 +56,12 @@ class CheckTest extends TestCase
         return [
             //正三角形
             '正三角形' => ['3 3 3', Triangle::EQUILATERAL_TRIANGLE],
-            '小数点を含んだ正三角形' => ['2.1 2.1 2.1', Triangle::EQUILATERAL_TRIANGLE],
 
             //二等辺三角形
             '二等辺三角形' => ['5 2 5', Triangle::ISOSCELES_TRIANGLE],
-            '小数点を含んだ二等辺三角形' => ['5.5 2 5.5', Triangle::ISOSCELES_TRIANGLE],
 
             //不等辺三角形
             '不等辺三角形' => ['3 1 5', Triangle::SCALENE_TRIANGLE],
-            '小数点を含んだ不等辺三角形' => ['3 1 5.8', Triangle::SCALENE_TRIANGLE],
-
-            //不成立は実装できなかった
         ];
     }
 }
