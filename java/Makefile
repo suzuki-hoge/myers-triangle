@@ -10,6 +10,9 @@ bash:
 java:
 	docker run -v $(CURDIR):/opt/project -w /opt/project --name myers-triangle-java --rm -it myers-triangle:java jshell
 
+main:
+	./gradlew run --args="${args}"
+
 test:
 	./gradlew test
 

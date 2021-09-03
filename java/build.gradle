@@ -1,4 +1,8 @@
-apply plugin : 'java'
+plugins {
+    id 'java'
+    id 'groovy'
+    id 'application'
+}
 
 repositories {
     mavenCentral()
@@ -6,9 +10,7 @@ repositories {
 
 dependencies {
     implementation "org.projectlombok:lombok:1.16.2"
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.7.2'
+    testImplementation "org.spockframework:spock-core:2.0-groovy-3.0"
 }
 
 tasks {
@@ -24,7 +26,7 @@ java {
 }
 
 test {
-    useJUnitPlatform {
-        includeEngines 'junit-jupiter'
-    }
+    useJUnitPlatform()
 }
+
+mainClassName = 'Main'

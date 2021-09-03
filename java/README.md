@@ -1,6 +1,6 @@
 # Myers Triangle for Java
 ## プロジェクト環境構築
-ここではこのリポジトリのイメージとスクリプトを使い IntelliJ で開発する例を示す
+このリポジトリのイメージとスクリプトを使い IntelliJ で開発する例です
 
 tool   | version | env                               
 :--    | :--     | :--                                 
@@ -51,9 +51,16 @@ jshell> Arrays.asList(1, 2, 3).size() + 5
 $1 ==> 8
 ```
 
-### Docker コンテナに接続
+### メイン文実行
+```
+$ make main args='3 3 3'
+```
+
+### コンテナ接続
 必要であれば
+正三角形
 
 ```
 $ make bash
 ```
+
